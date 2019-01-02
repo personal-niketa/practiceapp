@@ -14,24 +14,30 @@ class Vehicle
   ## Understanding arguments
   ####################################################################################
 
+  ## simple arguments [position based]
+
+  def method_2_1(arg1, arg2)
+    puts arg1 + ' ' + arg2
+  end
+
+  def method_2(arg1='new', arg2='test')
+    puts arg1 + ' ' + arg2
+  end
+  
+  ## unlimited arguments
+
+  def method_3(*args)
+    puts args.inspect
+  end
+  
   ## keywords arguments
 
   def method_1(arg1: 'test', arg2: 'test1')
     puts arg1 + ' ' + arg2
   end
 
-  ## simple arguments [position based]
-
-  def method_2(arg1='new', arg2='test')
-    puts arg1 + ' ' + arg2
-  end
 
 
-  ## unlimited arguments
-
-  def method_3(*args)
-    puts args.inspect
-  end
 
   ####################################################################################
 

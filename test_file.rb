@@ -1,4 +1,5 @@
 class TestFile
+  attr_accessor :attr4, :attr5
 
   def test_method
     sdcsgnvdbncvbnsv

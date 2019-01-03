@@ -1,8 +1,9 @@
 class NewFile
+  TEST_CONSTANT = 10
   attr_accessor :test_attribute
 
-  def initialize
-    self.test_attribute = "nikku"
+  def initialize(arg1=10)
+    self.test_attribute = arg1
   end 
 
   def test_method

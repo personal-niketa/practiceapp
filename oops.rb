@@ -7,8 +7,10 @@
 ### inheritance
 ### overloading and overriding(polymorphic)
 # --------------------------------
-### encapsulation
 ### arguments and method handling
 #-----------------------------------
-### singleton class or eigen class
-### abstraction(abstract class)
+### singleton method or eigen method
+
+#---------------------------------------
+### encapsulation- will do later
+### abstraction(abstract class) - will do later

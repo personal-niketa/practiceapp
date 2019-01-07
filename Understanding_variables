@@ -1,0 +1,21 @@
+Variables is a symbol or name that stands for a value.
+
+Types of variables:
+
+* Local Variables
+  A local variable name must start with a lowercase letter (a-z) or underscore. It is only valid within fa block of code.
+
+* Instance Variables
+  These are shared across all methods for the same object. The instance variable name must start with '@' character.
+  Note: An uninitialized instance variable has a value of nil.
+
+* Class Variables 
+  These are shared between a class, its subclasses and its instances. It must start with a '@@'.
+
+* Global Variables
+  It must start with '$'. Global variable are accessible everywhere.
+
+* Constants
+  A variable whose name begins with an uppercase letter (A-Z) is a constant. A constant can be reassigned a value after its initialization, but doing so will generate a warning. Every class is a constant.
+
+

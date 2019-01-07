@@ -1,0 +1,89 @@
+#=========================================
+## MODULES
+#=========================================
+
+## Modules are a way of grouping together methods , classes and constants. Modules give you 2 major benefits:
+# 1. Modules provides namespace and prevent name classes.
+# 2. Modules implement the mixin facility.
+
+# Modules define a namespace, a sandbox in which your methods and constants can play without having to worry about being stepped on by other methods and constants.
+
+# Mixins functionality allows sharing common methods across multiple classes or modules.
+# Modules can't have instances, because a module isn't a class. However, you can include a module within a class definition. When this happens, all the module's instance methods are suddenly available as methods in the class as well. They get mixed in. In fact, mixed-in modules effectively behave as superclasses. 
+
+module A
+  def whoAmI?
+    "#{self}"
+  end
+end
+
+class A_1
+  include A
+end
+
+class A_2
+  include A
+end
+
+a = A_1.new
+a.whoAmI?
+
+a1 = A_2.new
+a1.whoAmI?
+
+## To create reusable code, you have probably already defined a module or class that you would like to use elsewhere in your code. In order to do that you can choose one of the method explained below:
+
+# ***** INCLUDE  *****
+### it is the way to inject code from one module to other module or class. It loads module methods as instance methods inside a class.
+
+# ***** EXTEND   *****
+### It loads module methods as class methods inside a class.
+
+
+
+class B_1
+  extend A
+end
+
+class B_2
+  extend A
+end
+
+b1 = B_1.whoAmI?
+b2 = B_2.whoAmI?
+
+### NESTING --- 
+
+# Modules may be nested. Many packages create a single outermost module (or class ) to provide a namespace for their functionality.   
+
+module Outer
+  module Inner
+    PI=3.416
+  end
+end  
+
+#====================================================
+
+##### Handling other files inside a script/file
+
+#====================================================
+
+# For accessing files inside a script/file, following 2 methods could be used:
+
+## ***** LOAD   *****
+load 'module1.rb'
+
+# LOAD reads and parses files every time you call `load` 
+
+## ***** REQUIRE   *****
+require 'module1'
+
+# REQUIRE reads and parses files only once, when they were referenced for the first time.
+
+# It reads the file from the file system, parses it, saves to the memory and runs it in a given place. What does it mean? Simply, even if you change the required file when the script is running, those changes won't be applied - Ruby will use the file from memory, not from the file system.
+
+### Require gives you access to many libraries and extensions built in Ruby as well as many more stuffs written by other programmers.
+
+
+## So when to use load? In most cases, you will use require but there are some cases when load is useful, for example, when your module changes frequently you may want to pick up those changes in classes that loads this module.
+

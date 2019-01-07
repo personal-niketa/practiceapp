@@ -1,0 +1,57 @@
+##############################################
+## TOPICS
+##############################################
+# Class
+# object
+# scope - class method and instance method
+# access modifier - public private and protected
+# constructors
+# inheritance
+# overloading and overriding(polymorphic)
+# arguments and method handling
+# singleton method or eigen method
+# encapsulation- will do later
+# abstraction(abstract class) - will do later
+
+##############################################
+## Definitions
+##############################################
+
+## OBJECTS
+#----------
+# In Object-Oriented programming(OOP), objects are the things you think about first in designing a program and they are also the units of code that are eventually derived from the process. Objects have state and behaviours. It is an instance of a class.  Example: A dog has states -color, name, etc and behaviours - wagging tail, barking, etc.
+
+## CLASS
+#--------
+# It is a template/blueprint that describes the state/behaviour that the object of its type support.
+
+
+## CONSTRUCTORS 
+#--------------
+
+# A constructors is a special method of a class or structure in OOPS that initializes an object of that type.
+
+
+## OVERLOADING
+#--------------
+# It means creating methods with same name but different parameters.
+
+
+## OVERRIDING
+#--------------
+# It means re-defining body of a method of superclass in a subclass to change behaviour of method.
+
+## POLYMORPHISM
+#----------------
+## It is a wide concept which includes overriding and overloading.
+
+
+## ENCAPUSLATION
+#----------------
+# It is wrapping up of data and code into single unit. Example - class  
+
+## ABSTRACTION
+#---------------
+# It is the process of hiding the background details from the User that is not necessarily needed for the user to interact with the program. Example - A calculator in which user only input and gets the output irrespective of the process going inside.  
+
+

@@ -1,0 +1,50 @@
+.container
+  .panel.panel-primary.margin-top-60
+    .panel-heading
+      %i.fa.fa-car
+      Update User Details
+    .panel-body
+      = form_for @user, url: user_path(id: @user.id), method: :put do |f|
+        .row
+          .form-group.col-lg-6
+            %label
+              Email
+              %span{style: 'color: red'} *
+            = f.text_field :email, placeholder: 'email', class: "form-control",required: true
+            .email-show  
+          .form-group.col-lg-6
+            %label
+              First Name
+              %span{style: 'color: red'} *
+            = f.text_field :first_name, placeholder: 'first_name', class: "form-control",required: true
+            .result-show
+          .form-group.col-lg-6
+            %label
+              Last Name
+              %span{style: 'color: red'} *
+            = f.text_field :last_name, placeholder: 'last_name', class: "form-control",required: true
+          .form-group.col-lg-6
+            %label
+              Gender
+              %span{style: 'color: red'} *
+            = f.radio_button :gender, 'male', :checked => true
+            = label :gender_male, 'Male'
+            = f.radio_button :gender, 'female'
+            = label :gender_female, 'Female'
+          .form-group.col-lg-6
+            %label
+              Date Of Birth
+              %span{style: 'color: red'} *
+            = f.text_field :dob, placeholder: 'dob', class: "form-control datepicker", required: true
+                      
+        .row
+          .col-lg-12
+            = f.submit "Update User", class: "btn btn-primary"
+:javascript   
+  $(document).ready(function() {
+     $('.datepicker').datepicker({
+      format: "yyyy/mm/dd",
+      autoclose: true,
+      todayBtn: "linked"
+    });
+  });            

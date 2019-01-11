@@ -1,0 +1,49 @@
+.container
+  .panel.panel-primary.margin-top-60
+    .panel-heading
+      %i.fa.fa-car
+      Add New Car
+    .panel-body
+      = form_for @car, url: cars_path, method: :post do |f|
+        .row
+          .form-group.col-lg-6
+            %label
+              Model
+              %span{style: 'color: red'} *
+            = f.text_field :car_model, placeholder: 'model', id: "cars", class: "form-control",required: true
+            .result-show
+          .form-group.col-lg-6
+            %label
+              Description
+              %span{style: 'color: red'} *
+            = f.text_field :description, placeholder: 'description', class: "form-control",required: true
+            
+        .row
+          .col-lg-12
+            = f.submit "Add New Cars", class: "btn btn-primary", id: "car_submit"
+:javascript   
+  $(document).ready(function() {
+    $('#car_submit').prop('disabled', true);
+    $('#cars').keypress(function(){
+      var car = $(this).val();
+      $.ajax('/fetch_cars', 
+      {
+        dataType: 'json', // type of response data
+        data: { car_name: car},  // data to submit
+        timeout: 500,     // timeout milliseconds
+        success: function (data,status,xhr) {   // success callback function
+          if (data.flag == false) {
+            $('.result-show').html('Not exist');
+            $('.result-show').css('color', 'green');
+            $('#car_submit').prop('disabled', false);
+          } else {
+            $('.result-show').html('Already exist');
+            $('.result-show').css('color', 'red');
+            $('#car_submit').prop('disabled', true);
+          }
+        },
+      });
+    });
+
+  });         
+           

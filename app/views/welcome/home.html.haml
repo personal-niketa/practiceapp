@@ -1,3 +1,36 @@
 %p asgdnagbnv
+%select{:name => "cars", id: 'cars'}
+  %option{:value => "volvo"} Volvo
+  %option{:value => "saab"} Saab
+  %option{:value => "fiat"} Fiat
+  %option{:value => "audi"} Audi
+.result-show
 :javascript
-  $('body').css('background', 'red');
+  $.ajax('/json_sample', 
+  {
+    dataType: 'json', // type of response data
+    data: { myData: true, param1: 'val' },  // data to submit
+    timeout: 500,     // timeout milliseconds
+    success: function (data,status,xhr) {   // success callback function
+      $('.result-show').append(data.firstName + ' ' + data.lastName);
+    },
+  });
+
+  $('#cars').change(function(){
+    var car = $(this).val();
+    $.ajax('/fetch_description', 
+    {
+      dataType: 'json', // type of response data
+      data: { car: car},  // data to submit
+      timeout: 500,     // timeout milliseconds
+      success: function (data,status,xhr) {   // success callback function
+        $('.result-show').html(data.description + ' '+ status);
+      },
+    });
+  });
+:css
+  .result-show {
+    border: 1px solid #ccc;
+    height: 100px;
+    background: #ccc;
+  }

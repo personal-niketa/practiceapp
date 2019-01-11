@@ -1,0 +1,91 @@
+.container
+  .panel.panel-primary.margin-top-60
+    .panel-heading
+      %i.fa.fa-car
+      Add New User
+    .panel-body
+      = form_for @user, url: users_path, method: :post do |f|
+        .row
+          .form-group.col-lg-6
+            %label
+              Email
+              %span{style: 'color: red'} *
+            = f.text_field :email, placeholder: 'email', id: "email", class: "form-control",required: true
+            .email-show  
+          .form-group.col-lg-6
+            %label
+              First Name
+              %span{style: 'color: red'} *
+            = f.text_field :first_name, placeholder: 'first_name', class: "form-control",required: true
+            .result-show
+          .form-group.col-lg-6
+            %label
+              Last Name
+              %span{style: 'color: red'} *
+            = f.text_field :last_name, placeholder: 'last_name', class: "form-control",required: true
+          .form-group.col-lg-6
+            %label
+              Gender
+              %span{style: 'color: red'} *
+            = f.radio_button :gender, 'male', :checked => true
+            = label :gender_male, 'Male'
+            = f.radio_button :gender, 'female'
+            = label :gender_female, 'Female'
+          .form-group.col-lg-6
+            %label
+              Date Of Birth
+              %span{style: 'color: red'} *
+            = f.text_field :dob, placeholder: 'dob', class: "form-control datepicker", id: "dob", required: true
+            .dob-show         
+        .row
+          .col-lg-12
+            = f.submit "Add New User", class: "btn btn-primary", id: "user_submit"
+:javascript   
+  $(document).ready(function() {
+     $('.datepicker').datepicker({
+      format: "yyyy/mm/dd",
+      autoclose: true,
+      todayBtn: "linked"
+    });
+    $('#dob').change(function(){
+      var udob = $(this).val();
+      $.ajax('/fetch_user_age',
+      {
+        dataType: 'json', // type of response data
+        data: { user_dob: udob},  // data to submit
+        timeout: 500,     // timeout milliseconds
+        success: function (data,status,xhr) {
+        if (data.age_result <= 18){
+          $('#user_submit').prop('disabled', true);
+          $('.dob-show').html('You are Not eligible to create account because of being minor of age' + data.age_result);
+          $('.dob-show').css('color', 'red');
+        }
+        else{
+          $('#user_submit').prop('disabled', false);
+        }
+        }
+      });
+    });
+    $('#user_submit').prop('disabled', true);
+    $('#email').change(function(){
+      var uemail = $(this).val();
+      $.ajax('/fetch_users', 
+      {
+        dataType: 'json', // type of response data
+        data: { user_email: uemail},  // data to submit
+        timeout: 500,     // timeout milliseconds
+        success: function (data,status,xhr) {   // success callback function
+          if (data.flag == false) {
+            $('.email-show').html('Not exist');
+            $('.email-show').css('color', 'green');
+            $('#user_submit').prop('disabled', false);
+          } else {
+            $('.email-show').html('Already exist');
+            $('.email-show').css('color', 'red');
+            $('#user_submit').prop('disabled', true);
+          }
+        },
+      });
+    });
+
+  });     

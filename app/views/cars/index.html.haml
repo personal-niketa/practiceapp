@@ -1,0 +1,19 @@
+.container
+  %h3.page-heading
+    Car listing
+    = link_to new_car_path, class: "btn btn-primary", style: "margin-bottom: 10px; float:right;"  do
+      %i.fa.fa-plus
+      Add Car
+  .table-responsive
+    %table.table.table-bordered
+      %thead
+        %tr.table-head
+          %th Model
+          %th Description
+      %tbody.tbody-bg
+        - @cars.each do |car|
+          %tr
+            %td 
+              = car.car_model
+            %td 
+              = car.description

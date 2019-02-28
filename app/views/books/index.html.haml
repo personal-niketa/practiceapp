@@ -1,0 +1,25 @@
+.container
+  %h3.page-heading
+    Book listing
+    = link_to new_book_path, class: "btn btn-primary", style: "margin-bottom: 10px; float:right;"  do
+      %i.fa.fa-plus
+      Add Book
+  .table-responsive
+    %table.table.table-bordered
+      %thead
+        %tr.table-head
+          %th Book Name
+          %th Price
+          %th Actions
+      %tbody.tbody-bg
+        - @books.each do |book|
+          %tr
+            %td 
+              = book.name
+            %td 
+              = book.price
+            %td
+              = link_to edit_book_path(id: book.id) do
+                %i.fa.fa-edit
+              = link_to book_path(id: book.id), method: :delete, data: {confirm: "Are you sure?"} do
+                %i.fa.fa-trash  

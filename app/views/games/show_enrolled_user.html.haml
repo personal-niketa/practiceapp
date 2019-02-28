@@ -1,0 +1,18 @@
+.container
+  %h3.page-heading
+    Enrolled user for #{@game.name}
+  .table-responsive
+    %table.table.table-bordered
+      %thead
+        %tr.table-head
+          %th User Name
+          %th Category
+      %tbody.tbody-bg
+        - @enrolled_users.each do |enrollment|
+          %tr
+            %td 
+              = enrollment.user.first_name
+            %td
+              = enrollment.category  
+                
+                

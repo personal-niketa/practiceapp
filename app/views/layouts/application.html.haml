@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    %script{:src => "https://www.gstatic.com/charts/loader.js", :type => "text/javascript"}
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Practiceapp
     = csrf_meta_tags
@@ -8,5 +9,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body 
-    = render 'layouts/flash_messages'
+    #menu
+      = render 'layouts/menu'
+    = render 'layouts/flash_messages'  
     = yield

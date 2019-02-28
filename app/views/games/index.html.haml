@@ -1,0 +1,28 @@
+.container
+  %h3.page-heading
+    Game listing
+    = link_to new_game_path, class: "btn btn-primary", style: "margin-bottom: 10px; float:right;"  do
+      %i.fa.fa-plus
+      Add Game
+  .table-responsive
+    %table.table.table-bordered
+      %thead
+        %tr.table-head
+          %th Game Name
+          %th.action-width Actions
+      %tbody.tbody-bg
+        - @games.each do |game|
+          %tr
+            %td 
+              = game.name
+            %td
+              = link_to edit_game_path(id: game.id), title: 'Edit' do
+                %i.fa.fa-edit
+              = link_to game_path(id: game.id), method: :delete, data: {confirm: "Are you sure?"}, title: 'Delete' do
+                %i.fa.fa-trash
+              = link_to enroll_game_path(id: game.id), title: 'Enroll yourself' do
+                %i.fa.fa-pencil
+              = link_to show_enrolled_user_game_path(id: game.id), title: 'Show Enrolled User' do
+                %i.fa.fa-user-o  
+                
+                

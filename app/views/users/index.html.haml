@@ -1,7 +1,7 @@
 .container
-  .jumbotron
+  .jumbotron{style: 'height: auto'}
     .row
-      .col-sm-4
+      .col-sm-3
         .panel.user-styling
           .panel-heading
             %h1
@@ -10,7 +10,7 @@
             Users count
             .badge
               = @total_user            
-      .col-sm-4
+      .col-sm-3
         .panel.user-styling
           .panel-heading
             %h1
@@ -19,7 +19,7 @@
             Users male count
             .badge
               = @user_male 
-      .col-sm-4
+      .col-sm-3
         .panel.user-styling
           .panel-heading
             %h1
@@ -28,6 +28,14 @@
             Users female count
             .badge
               = @user_female
+    .row
+      .col-sm-4
+        #bar-chart-for-users
+      .col-sm-4
+        #pie-chart-for-users
+      .col-sm-4
+        = render 'test_bar', locals: {users: @users}
+
   .jumbotron     
     %h3.page-heading
       User listing
@@ -65,4 +73,51 @@
                   %i.fa.fa-user 
                   Delete   
               %td 
-                = age(user.dob)   
+                / = age(user.dob)   
+:javascript
+  $(document).ready(function() {
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ["Element", "Density", { role: "style" } ],
+          ["Total User", #{@total_user.to_i}, "#b87333"],
+          ["Male User",  #{@user_male.to_i}, "silver"],
+          ["Female User", #{@user_female.to_i}, "gold"],
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+                         { calc: "stringify",
+                           sourceColumn: 1,
+                           type: "string",
+                           role: "annotation" },
+                         2]);
+
+        var options = {
+          title: "Density of Precious Metals, in g/cm^3",
+          width: 300,
+          height: 200,
+          bar: {groupWidth: "95%"},
+          legend: { position: "none" },
+        };
+        var chart = new google.visualization.BarChart(document.getElementById("bar-chart-for-users"));
+        chart.draw(view, options);
+    }
+
+
+    google.charts.setOnLoadCallback(drawPie);
+    function drawPie() {
+      var data = google.visualization.arrayToDataTable([
+        ['USERS', 'COUNT'],
+        ['MALE',   #{@user_male.to_i}],
+        ['FEMALE', #{@user_female.to_i}],
+      ]);
+      var options = {
+        title: 'Users Metrics'
+      };
+      var chart = new google.visualization.PieChart(document.getElementById("pie-chart-for-users"));
+      chart.draw(data, options);
+    }
+  });
+ 

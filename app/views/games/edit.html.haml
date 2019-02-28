@@ -1,0 +1,16 @@
+.container
+  .panel.panel-primary.margin-top-60
+    .panel-heading
+      %i.fa.fa-gamepad
+      Update Game Details
+    .panel-body
+      = form_for @game, url: game_path(id: @game.id), method: :put do |f|
+        .row  
+          .form-group.col-lg-6
+            %label
+              Book name
+              %span{style: 'color: red'} *
+            = f.text_field :name, placeholder: 'Book name', class: "form-control",required: true
+        .row
+          .col-lg-12
+            = f.submit "Update Game details", class: "btn btn-primary"           

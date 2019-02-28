@@ -1,0 +1,7 @@
+Delhi 5
+Bombay 6
+Delhi 10
+Noida 16
+Bombay 25
+Bombay 16
+Noida 30

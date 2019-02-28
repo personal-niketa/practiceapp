@@ -1,0 +1,21 @@
+.container
+  .panel.panel-primary.margin-top-60
+    .panel-heading
+      %i.fa.fa-book
+      Update Book Details
+    .panel-body
+      = form_for @book, url: book_path(id: @book.id), method: :put do |f|
+        .row  
+          .form-group.col-lg-6
+            %label
+              Book name
+              %span{style: 'color: red'} *
+            = f.text_field :name, placeholder: 'Book name', class: "form-control",required: true
+          .form-group.col-lg-6
+            %label
+              Price
+              %span{style: 'color: red'} *
+            = f.text_field :price, placeholder: 'Price', class: "form-control",required: true
+        .row
+          .col-lg-12
+            = f.submit "Update Book details", class: "btn btn-primary"           

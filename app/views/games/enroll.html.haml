@@ -1,0 +1,25 @@
+.well
+  %h4 User Enrollment form for #{@game.name} 
+
+  = form_tag enrolled_user_game_path(id: @game.id), method: :post do
+    .form-group
+      %label First Name
+      = text_field_tag :first_name, '', class: 'form-control'
+    .form-group
+      %label Last Name
+      = text_field_tag :last_name, '', class: 'form-control'
+    .form-group
+      %label Age
+      = text_field_tag :age, '', class: 'form-control'
+    .form-group
+      %label Gender
+      = text_field_tag :gender, '', class: 'form-control'
+    .form-group
+      %label Email
+      = text_field_tag :email, '', class: 'form-control'
+    .form-group
+      %label Category
+      = select_tag :category, options_for_select(category_options), { prompt: 'Select category' }
+  
+    .form-group
+      = submit_tag "Enroll yourself", class: 'btn btn-danger' 

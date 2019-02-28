@@ -9,4 +9,13 @@ Rails.application.routes.draw do
   get '/fetch_user_age', to: 'users#fetch_user_age'
   resources :cars
   resources :users
+  resources :books
+  resources :games do
+    member do
+      get 'enroll'
+      post 'enrolled_user'
+      get 'show_enrolled_user'
+    end
+      
+  end
 end

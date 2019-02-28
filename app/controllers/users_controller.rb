@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @total_user = User.all.count
-    @user_male = User.where(gender: "male").count
-    @user_female = User.where(gender: "female").count
+    @user_male = User.male_members.count
+    @user_female = User.female_members.count
   end
 
   def new

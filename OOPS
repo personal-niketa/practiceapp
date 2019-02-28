@@ -55,3 +55,12 @@
 # It is the process of hiding the background details from the User that is not necessarily needed for the user to interact with the program. Example - A calculator in which user only input and gets the output irrespective of the process going inside.  
 
 
+###  DUCK TYPING
+#-----------------
+Duck Typing refers to the tendency of Ruby to be less concerned with the class of an object and more concerned with what methods can be called on it and what operations can be performed on it.
+
+If an object walks like a duck and talks like a duck, then the Ruby interpreter is happy to treat it as if it were a duck.
+
+
+
+## MONKEY PACTHING
